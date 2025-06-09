@@ -1,0 +1,12 @@
+# data_source.py
+import requests
+
+def get_global_vaccination_data():
+    url = "https://disease.sh/v3/covid-19/vaccine/coverage?lastdays=1"
+    res = requests.get(url)
+    return res.json()
+
+def get_country_vaccination_data(country):
+    url = f"https://disease.sh/v3/covid-19/vaccine/coverage/countries/{country}?lastdays=1"
+    res = requests.get(url)
+    return res.json()
