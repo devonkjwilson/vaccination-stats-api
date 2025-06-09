@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: Vaccination Stats API
+  description: Get real-time COVID-19 vaccination data.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /vaccinations/global:
+    get:
+      summary: Global vaccination data
+      responses:
+        '200':
+          description: Success
+
+  /vaccinations/country/{country}:
+    get:
+      summary: Vaccination data for a specific country
+      parameters:
+        - name: country
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
