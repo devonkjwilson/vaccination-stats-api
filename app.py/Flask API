@@ -1,0 +1,22 @@
+# app.py
+from flask import Flask, jsonify, request
+from data_source import get_global_vaccination_data, get_country_vaccination_data
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the Vaccination Stats API!"})
+
+@app.route('/vaccinations/global', methods=['GET'])
+def global_stats():
+    data = get_global_vaccination_data()
+    return jsonify(data)
+
+@app.route('/vaccinations/country/<country>', methods=['GET'])
+def country_stats(country):
+    data = get_country_vaccination_data(country)
+    return jsonify(data)
+
+if __name__ == '__main__':
+    app.run(debug=True)
